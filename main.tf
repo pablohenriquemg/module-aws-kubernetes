@@ -166,3 +166,24 @@ users:
   filename = "kubeconfig"
 }
 
+# Setup namespace for microservices deployment
+provider "kubernetes" {
+  load_config_file       = false
+  cluster_ca_certificate = base64decode(aws_eks_cluster.ms-up-running.certificate_authority.0.data)
+  host                   = aws_eks_cluster.ms-up-running.endpoint
+  exec {
+    api_version = "client.authentication.k8s.io/v1alpha1"
+    command     = "aws-iam-authenticator"
+    args        = ["token", "-i", "${aws_eks_cluster.ms-up-running.name}"]
+  }
+}
+
+# Create a namespace for microservice pods and label it for automatic sidecar injection
+resource "kubernetes_namespace" "ms-namespace" {
+
+  # Make sure that the EKS node group is running before we try to create a namespace
+  depends_on = [aws_eks_node_group.ms-node-group]
+  metadata {
+    name = var.ms_namespace
+  }
+} 
