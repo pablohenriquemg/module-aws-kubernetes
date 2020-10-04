@@ -160,7 +160,7 @@ users:
     KUBECONFIG
   filename = "kubeconfig"
 }
-
+/*
 #  Use data to ensure that the cluster is up before we start using it
 data "aws_eks_cluster" "msur" {
   name = aws_eks_cluster.ms-up-running.id
@@ -184,3 +184,4 @@ resource "kubernetes_namespace" "ms-namespace" {
     name = var.ms_namespace
   }
 }
+*/

@@ -17,7 +17,6 @@ variable "ms_namespace" {
   default = "microservices"
 }
 
-
 variable "vpc_id" {
   type = string
 }
