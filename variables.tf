@@ -1,7 +1,7 @@
 variable "aws_region" {
-  description = "AWS region ID for deployment (e.g. eu-west-1)"
+  description = "AWS region ID for deployment (e.g. us-east-2)"
   type        = string
-  default     = "eu-west-2"
+  default     = "us-east-2"
 }
 
 variable "env_name" {
@@ -41,7 +41,7 @@ variable "nodegroup_min_size" {
 
 variable "nodegroup_max_size" {
   type    = number
-  default = 5
+  default = 2
 }
 
 variable "nodegroup_disk_size" {
